@@ -1,0 +1,30 @@
+{
+  "$schema": "./versions.schema.json",
+  "tool": "ledger",
+  "description": "CodeAtlas Living Architecture Ledger CLI",
+  "repository": "https://github.com/mauricecarrier7/CodeAtlas",
+  "latest": "0.1.0",
+  "minimum_supported": "0.1.0",
+  "versions": [
+    {
+      "version": "0.1.0",
+      "release_date": "2026-02-01T18:48:00Z",
+      "source_commit": "0120625",
+      "swift_version": "6.0",
+      "release_notes": "Initial release with requirements tracking and spec generation",
+      "artifacts": {
+        "macos-arm64": {
+          "url": "https://github.com/mauricecarrier7/ledger-dist/releases/download/v0.1.0/ledger-macos-arm64",
+          "sha256": "33fa62675272d24ff704df4639bb7073f01d4c6859142a18fe6e6b306a5a504a",
+          "size_bytes": 29025496
+        },
+        "macos-x64": {
+          "url": "https://github.com/mauricecarrier7/ledger-dist/releases/download/v0.1.0/ledger-macos-x64",
+          "sha256": "PLACEHOLDER_SHA256_MACOS_X64",
+          "size_bytes": 0
+        }
+      },
+      "checksums_url": "https://github.com/mauricecarrier7/ledger-dist/releases/download/v0.1.0/checksums.txt"
+    }
+  ]
+}

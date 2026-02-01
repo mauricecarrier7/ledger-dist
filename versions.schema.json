@@ -1,0 +1,78 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Ledger Distribution Manifest",
+  "type": "object",
+  "required": ["tool", "latest", "minimum_supported", "versions"],
+  "properties": {
+    "tool": {
+      "type": "string",
+      "const": "ledger"
+    },
+    "description": {
+      "type": "string"
+    },
+    "repository": {
+      "type": "string",
+      "format": "uri"
+    },
+    "latest": {
+      "type": "string",
+      "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+(-[a-zA-Z0-9]+)?$"
+    },
+    "minimum_supported": {
+      "type": "string",
+      "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+(-[a-zA-Z0-9]+)?$"
+    },
+    "versions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["version", "release_date", "source_commit", "artifacts"],
+        "properties": {
+          "version": {
+            "type": "string",
+            "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+(-[a-zA-Z0-9]+)?$"
+          },
+          "release_date": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "source_commit": {
+            "type": "string",
+            "minLength": 7
+          },
+          "swift_version": {
+            "type": "string"
+          },
+          "release_notes": {
+            "type": "string"
+          },
+          "artifacts": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "object",
+              "required": ["url", "sha256"],
+              "properties": {
+                "url": {
+                  "type": "string",
+                  "format": "uri"
+                },
+                "sha256": {
+                  "type": "string",
+                  "pattern": "^[a-f0-9]{64}$|^PLACEHOLDER_"
+                },
+                "size_bytes": {
+                  "type": "integer"
+                }
+              }
+            }
+          },
+          "checksums_url": {
+            "type": "string",
+            "format": "uri"
+          }
+        }
+      }
+    }
+  }
+}
