@@ -3,9 +3,24 @@
   "tool": "ledger",
   "description": "CodeAtlas Living Architecture Ledger CLI",
   "repository": "https://github.com/mauricecarrier7/CodeAtlas",
-  "latest": "0.5.0",
+  "latest": "0.6.0",
   "minimum_supported": "0.1.0",
   "versions": [
+    {
+      "version": "0.6.0",
+      "release_date": "2026-02-02T14:27:00Z",
+      "source_commit": "fe3c0ba",
+      "swift_version": "6.0",
+      "release_notes": "Flow Projection Phase 1.1: UIKit + SwiftUI detection, ledger flow observe (CI-safe), flow build/import/diff commands",
+      "artifacts": {
+        "macos-arm64": {
+          "url": "https://github.com/mauricecarrier7/ledger-dist/releases/download/v0.6.0/ledger-macos-arm64",
+          "sha256": "43c79b763f0f0ca61779dae4b2c6596d93c61eacc4efeee422cd9ca607ba847c",
+          "size_bytes": 30070920
+        }
+      },
+      "checksums_url": "https://github.com/mauricecarrier7/ledger-dist/releases/download/v0.6.0/ledger-macos-arm64.sha256"
+    },
     {
       "version": "0.5.0",
       "release_date": "2026-02-02T04:15:00Z",
