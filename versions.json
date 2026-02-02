@@ -3,9 +3,24 @@
   "tool": "ledger",
   "description": "CodeAtlas Living Architecture Ledger CLI",
   "repository": "https://github.com/mauricecarrier7/CodeAtlas",
-  "latest": "0.8.2",
+  "latest": "0.8.3",
   "minimum_supported": "0.1.0",
   "versions": [
+    {
+      "version": "0.8.3",
+      "release_date": "2026-02-02T19:52:00Z",
+      "source_commit": "d68b7eb",
+      "swift_version": "6.0",
+      "release_notes": "Fix summary.json key names: arch/reach/a11y/qa now match domain names and output directories",
+      "artifacts": {
+        "macos-arm64": {
+          "url": "https://github.com/mauricecarrier7/ledger-dist/releases/download/v0.8.3/ledger-macos-arm64",
+          "sha256": "5f7fd026971da052940b34475b6bfde254b6d0dff5d50bbeea5726c239e48019",
+          "size_bytes": 30567048
+        }
+      },
+      "checksums_url": "https://github.com/mauricecarrier7/ledger-dist/releases/download/v0.8.3/ledger-macos-arm64.sha256"
+    },
     {
       "version": "0.8.2",
       "release_date": "2026-02-02T18:00:00Z",
