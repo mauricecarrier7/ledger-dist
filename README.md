@@ -2,50 +2,55 @@
 
 Official distribution repository for CodeAtlas **ledger** CLI.
 
-## Quick Install
-
-### One-liner (recommended)
+## Quick Install (Recommended)
 
 ```bash
+# Install latest version to /usr/local/bin
 curl -fsSL https://raw.githubusercontent.com/mauricecarrier7/ledger-dist/main/install.sh | bash
 ```
 
-### With specific version
+### Install Options
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/mauricecarrier7/ledger-dist/main/install.sh | bash -s -- --version 0.8.2
-```
+# Specific version
+curl -fsSL .../install.sh | bash -s -- --version 0.8.2
 
-### Custom install directory
+# Custom directory (e.g., project-local)
+curl -fsSL .../install.sh | bash -s -- --dir ./tools/bin
 
-```bash
-curl -fsSL https://raw.githubusercontent.com/mauricecarrier7/ledger-dist/main/install.sh | bash -s -- --dir ./tools/bin
+# Both
+curl -fsSL .../install.sh | bash -s -- --version 0.8.2 --dir ./tools/bin
 ```
 
 ## Manual Installation
 
-If you prefer not to pipe to bash:
+If you prefer not to use the install script:
 
 ```bash
-# Download
-curl -fsSL -o ledger https://github.com/mauricecarrier7/ledger-dist/releases/download/v0.8.2/ledger-macos-arm64
+# 1. Download the binary
+curl -fsSL -o ledger \
+  https://github.com/mauricecarrier7/ledger-dist/releases/download/v0.8.2/ledger-macos-arm64
 
-# IMPORTANT: Clear macOS quarantine (prevents hanging)
+# 2. CRITICAL: Clear macOS quarantine (prevents binary from hanging!)
 xattr -cr ledger
 
-# Make executable
+# 3. Make executable
 chmod +x ledger
 
-# Move to PATH
-sudo mv ledger /usr/local/bin/
+# 4. Move to your PATH
+mv ledger ./tools/bin/  # or /usr/local/bin/
 ```
 
-## Version Pinning (CI/CD)
+> **Warning**: Skipping the `xattr -cr` step on macOS will cause the binary to hang indefinitely when executed.
 
-**Always pin to a specific version in CI/CD pipelines.**
+## CI/CD Integration
+
+### GitHub Actions
 
 ```yaml
-# .github/workflows/analyze.yml
+name: CodeAtlas Analysis
+on: [push, pull_request]
+
 jobs:
   analyze:
     runs-on: macos-latest
@@ -54,70 +59,99 @@ jobs:
       
       - name: Install ledger
         run: |
-          curl -fsSL https://raw.githubusercontent.com/mauricecarrier7/ledger-dist/main/install.sh | bash -s -- --version 0.8.2 --dir ./tools/bin
+          curl -fsSL https://raw.githubusercontent.com/mauricecarrier7/ledger-dist/main/install.sh \
+            | bash -s -- --version 0.8.2 --dir ./tools/bin
           
       - name: Run analysis
-        run: ./tools/bin/ledger observe --domains arch,a11y,qa
+        run: |
+          ./tools/bin/ledger observe --domains arch,a11y,qa --output artifacts/ledger
+          
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: ledger-analysis
+          path: artifacts/ledger/
+```
+
+### Version Pinning
+
+**Always pin to a specific version in CI.** Don't use `latest` in production pipelines.
+
+```bash
+# Good - pinned version
+curl -fsSL .../install.sh | bash -s -- --version 0.8.2
+
+# Bad - unpredictable in CI
+curl -fsSL .../install.sh | bash
 ```
 
 ## Available Platforms
 
-| Platform | Architecture | Artifact |
-|----------|--------------|----------|
-| macOS | arm64 (Apple Silicon) | `ledger-macos-arm64` |
+| Platform | Architecture | Binary Name |
+|----------|--------------|-------------|
+| macOS | Apple Silicon (M1/M2/M3) | `ledger-macos-arm64` |
 
 ## Troubleshooting
 
 ### Binary hangs on execution (macOS)
 
-**Symptom:** Running `ledger --version` hangs indefinitely.
+**Symptom:** `ledger --version` hangs forever, or shows "UE" (uninterruptible sleep) in `ps`.
 
-**Cause:** macOS quarantine/provenance extended attributes block unsigned binaries.
+**Cause:** macOS quarantine attributes on downloaded binaries.
 
-**Solution:**
+**Fix:**
 ```bash
-# Clear quarantine attributes
 xattr -cr /path/to/ledger
-
-# Or use the install script which handles this automatically
 ```
 
-### "Operation not permitted" errors
+The install script does this automatically, but if you downloaded manually, you must run this.
+
+### "Operation not permitted" on xattr
+
+Try with sudo, or move the binary to a non-protected location first:
+```bash
+mv ledger /tmp/ledger
+xattr -cr /tmp/ledger
+mv /tmp/ledger ./tools/bin/ledger
+```
+
+### Checksum mismatch
+
+1. Re-download (network corruption)
+2. Check for corporate proxy interference
+3. Verify you're downloading the correct version
+
+### Command not found after install
+
+Add the install directory to your PATH:
+```bash
+# For ./tools/bin installs
+export PATH="./tools/bin:$PATH"
+
+# For /usr/local/bin (usually already in PATH)
+export PATH="/usr/local/bin:$PATH"
+```
+
+## Version History
+
+| Version | Date | Notes |
+|---------|------|-------|
+| 0.8.2 | 2026-02-02 | QAAtlas preset detection for iOS/Swift |
+| 0.8.1 | 2026-02-02 | AccessLint & QAAtlas binary integration |
+| 0.8.0 | 2026-02-02 | Unified `observe` command for CI |
+| 0.7.0 | 2026-02-02 | Platform presets, onboarding wizard |
+| 0.6.0 | 2026-02-02 | SwiftUI flow detection |
+
+Full version details in [`versions.json`](./versions.json).
+
+## Verifying Checksums
+
+All binaries have SHA256 checksums in `versions.json`:
 
 ```bash
-# Remove all extended attributes
-xattr -cr ledger
-
-# If that fails, check if file is on a restricted volume
-```
-
-### Checksum verification failed
-
-The install script verifies SHA256 checksums. If verification fails:
-
-1. Retry the download (network issue)
-2. Check for proxy/firewall interference
-3. Report to maintainers if persistent
-
-## Version Manifest
-
-The `versions.json` file contains all available versions with checksums:
-
-```json
-{
-  "latest": "0.8.2",
-  "versions": [
-    {
-      "version": "0.8.2",
-      "artifacts": {
-        "macos-arm64": {
-          "url": "https://github.com/.../ledger-macos-arm64",
-          "sha256": "b40283d1e5bec356c7369b5167ad4e4ad980877295d4f5dea793cde4edc51826"
-        }
-      }
-    }
-  ]
-}
+# Check manually
+shasum -a 256 ledger
+# Compare with sha256 field in versions.json
 ```
 
 ## Source Repository
