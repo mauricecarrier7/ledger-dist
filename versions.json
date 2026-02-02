@@ -3,9 +3,24 @@
   "tool": "ledger",
   "description": "CodeAtlas Living Architecture Ledger CLI",
   "repository": "https://github.com/mauricecarrier7/CodeAtlas",
-  "latest": "0.6.0",
+  "latest": "0.7.0",
   "minimum_supported": "0.1.0",
   "versions": [
+    {
+      "version": "0.7.0",
+      "release_date": "2026-02-02T15:49:00Z",
+      "source_commit": "16e6df9",
+      "swift_version": "6.0",
+      "release_notes": "Onboarding improvements: platform presets (--platform ios/android/react), config --list/--validate, bulk flow import, enhanced wizard",
+      "artifacts": {
+        "macos-arm64": {
+          "url": "https://github.com/mauricecarrier7/ledger-dist/releases/download/v0.7.0/ledger-macos-arm64",
+          "sha256": "5ffb02505dd20d53293cfdf14c0506803f3b2e3bb744d597fb77df1c3aae27d6",
+          "size_bytes": 30225640
+        }
+      },
+      "checksums_url": "https://github.com/mauricecarrier7/ledger-dist/releases/download/v0.7.0/ledger-macos-arm64.sha256"
+    },
     {
       "version": "0.6.0",
       "release_date": "2026-02-02T14:27:00Z",
