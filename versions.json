@@ -3,9 +3,24 @@
   "tool": "ledger",
   "description": "CodeAtlas Living Architecture Ledger CLI",
   "repository": "https://github.com/mauricecarrier7/CodeAtlas",
-  "latest": "0.7.0",
+  "latest": "0.8.0",
   "minimum_supported": "0.1.0",
   "versions": [
+    {
+      "version": "0.8.0",
+      "release_date": "2026-02-02T16:55:00Z",
+      "source_commit": "651401f",
+      "swift_version": "6.0",
+      "release_notes": "Unified observe command: ledger observe for CI-safe analysis with JSON output (summary.json, arch/analysis.json, a11y/findings.json, qa/gap-report.json, flow/flows.json)",
+      "artifacts": {
+        "macos-arm64": {
+          "url": "https://github.com/mauricecarrier7/ledger-dist/releases/download/v0.8.0/ledger-macos-arm64",
+          "sha256": "de404a8083f2a6c1b9522cd7ecbdcd70ef45f64c22b957a2efe53f869232888b",
+          "size_bytes": 30549000
+        }
+      },
+      "checksums_url": "https://github.com/mauricecarrier7/ledger-dist/releases/download/v0.8.0/ledger-macos-arm64.sha256"
+    },
     {
       "version": "0.7.0",
       "release_date": "2026-02-02T15:49:00Z",
