@@ -11,7 +11,7 @@
       "release_date": "2026-02-02T04:15:00Z",
       "source_commit": "51ea488",
       "swift_version": "6.0",
-      "release_notes": "Palace iOS support: Xcode file enumeration, entry point detection, logical modules, a11y diagnostics",
+      "release_notes": "Xcode project support: file enumeration, entry point detection, logical modules, a11y diagnostics",
       "artifacts": {
         "macos-arm64": {
           "url": "https://github.com/mauricecarrier7/ledger-dist/releases/download/v0.5.0/ledger-macos-arm64",
