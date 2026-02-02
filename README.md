@@ -13,13 +13,13 @@ curl -fsSL https://raw.githubusercontent.com/mauricecarrier7/ledger-dist/main/in
 
 ```bash
 # Specific version
-curl -fsSL .../install.sh | bash -s -- --version 0.9.0
+curl -fsSL .../install.sh | bash -s -- --version 0.8.3
 
 # Custom directory (e.g., project-local)
 curl -fsSL .../install.sh | bash -s -- --dir ./tools/bin
 
 # Both
-curl -fsSL .../install.sh | bash -s -- --version 0.9.0 --dir ./tools/bin
+curl -fsSL .../install.sh | bash -s -- --version 0.8.3 --dir ./tools/bin
 ```
 
 ## Manual Installation
@@ -29,7 +29,7 @@ If you prefer not to use the install script:
 ```bash
 # 1. Download the binary
 curl -fsSL -o ledger \
-  https://github.com/mauricecarrier7/ledger-dist/releases/download/v0.9.0/ledger-macos-arm64
+  https://github.com/mauricecarrier7/ledger-dist/releases/download/v0.8.3/ledger-macos-arm64
 
 # 2. CRITICAL: Clear macOS quarantine (prevents binary from hanging!)
 xattr -cr ledger
@@ -60,7 +60,7 @@ jobs:
       - name: Install ledger
         run: |
           curl -fsSL https://raw.githubusercontent.com/mauricecarrier7/ledger-dist/main/install.sh \
-            | bash -s -- --version 0.9.0 --dir ./tools/bin
+            | bash -s -- --version 0.8.3 --dir ./tools/bin
           
       - name: Run analysis
         run: |
@@ -79,7 +79,7 @@ jobs:
 
 ```bash
 # Good - pinned version
-curl -fsSL .../install.sh | bash -s -- --version 0.9.0
+curl -fsSL .../install.sh | bash -s -- --version 0.8.3
 
 # Bad - unpredictable in CI
 curl -fsSL .../install.sh | bash
@@ -136,8 +136,9 @@ export PATH="/usr/local/bin:$PATH"
 
 | Version | Date | Notes |
 |---------|------|-------|
-| 0.9.0 | 2026-02-02 | Integrated AccessLint & QAAtlas analyzers |
-| 0.9.0 | 2026-02-02 | Fix summary.json keys (arch/reach/a11y/qa) |
+| 0.9.1 | 2026-02-02 | Bundled QAAtlas binary - zero-config |
+| 0.9.0 | 2026-02-02 | Integrated AccessLint analyzer |
+| 0.8.3 | 2026-02-02 | Fix summary.json keys (arch/reach/a11y/qa) |
 | 0.8.2 | 2026-02-02 | QAAtlas preset detection for iOS/Swift |
 | 0.8.1 | 2026-02-02 | AccessLint & QAAtlas binary integration |
 | 0.8.0 | 2026-02-02 | Unified `observe` command for CI |
