@@ -3,7 +3,7 @@
   "tool": "ledger",
   "description": "CodeAtlas Living Architecture Ledger CLI",
   "repository": "https://github.com/mauricecarrier7/CodeAtlas",
-  "latest": "0.9.4",
+  "latest": "0.9.5",
   "minimum_supported": "0.1.0",
   "versions": [
     {
