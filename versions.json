@@ -3,9 +3,29 @@
   "tool": "ledger",
   "description": "CodeAtlas Living Architecture Ledger CLI",
   "repository": "https://github.com/mauricecarrier7/CodeAtlas",
-  "latest": "0.9.5",
+  "latest": "0.9.6",
   "minimum_supported": "0.1.0",
   "versions": [
+    {
+      "version": "0.9.6",
+      "release_date": "2026-03-31T23:00:00Z",
+      "source_commit": "e965bd4",
+      "swift_version": "6.0",
+      "release_notes": "QAAtlas 2.3.0 coverage accuracy overhaul — 8 fixes for Xcode alignment",
+      "artifacts": {
+        "macos-arm64": {
+          "url": "https://github.com/SyncTek-LLC/ledger-dist/releases/download/v0.9.6/ledger-macos-arm64",
+          "sha256": "f7786aba06333cefcf36b39d0feb3ec68c71cd05d3099f9e4cf95a9305c3ee2c",
+          "size_bytes": 30744600
+        },
+        "qaatlas": {
+          "url": "https://github.com/SyncTek-LLC/ledger-dist/releases/download/v0.9.6/qaatlas-macos-arm64",
+          "sha256": "60381ffd6946724a14ea4e9e75068b08e88a2d5c314dc89428d1d5be33ff522a",
+          "size_bytes": 111183648
+        }
+      },
+      "checksums_url": "https://github.com/SyncTek-LLC/ledger-dist/releases/download/v0.9.6/checksums.txt"
+    },
     {
       "version": "0.9.4",
       "release_date": "2026-02-03T01:00:00Z",
